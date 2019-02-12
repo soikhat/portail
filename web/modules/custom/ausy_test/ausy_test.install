@@ -1,0 +1,46 @@
+<?php
+
+function ausy_test_install(){
+
+    //Machine name for the vocabulary
+    $ausy_taxo_machineName  = 'pays';
+
+    // Vocabulary name in the back office
+
+    $ausy_taxo_name = 'Pays';
+
+    // Load the vocabulary list and check if our vocabulary exists
+    $vocabulary_list = \Drupal\taxonomy\Entity\Vocabulary::loadMultiple();
+
+    if(!isset($vocabulary_list['$ausy_taxo_name'])){
+
+        $vocabulary = \Drupal\taxonomy\Entity\Vocabulary::create([
+            'vid' => $ausy_taxo_machineName,
+            'name' => $ausy_taxo_name,
+
+        ]);
+
+        $vocabulary -> save();
+    }
+
+    // Creating our taxonomy terms
+    $items = [
+        'FRance',
+        'Allemagne',
+        'Sénégal',
+        'Madagascar',
+        'Comores',
+        'Inde'
+    ];
+    foreach ($items as $pays){
+
+        $pays = \Drupal\taxonomy\Entity\Term::create([
+            'parent' => [],
+            'name' => $pays,
+            'vid' => $ausy_taxo_machineName,
+        ]) -> save();
+    }
+
+
+
+}
