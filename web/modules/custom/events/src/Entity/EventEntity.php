@@ -10,6 +10,7 @@ use Drupal\Core\Entity\EntityChangedTrait;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\user\UserInterface;
 
+
 /**
  * Defines the Event entity entity.
  *
@@ -270,6 +271,139 @@ class EventEntity extends RevisionableContentEntityBase implements EventEntityIn
       ->setReadOnly(TRUE)
       ->setRevisionable(TRUE)
       ->setTranslatable(TRUE);
+    //custom field
+    $fields['description'] = BaseFieldDefinition::create('text_long')
+     ->setLabel(t('Description'))
+     ->setDescription(t('event description'))
+     ->setRevisionable(TRUE)
+     ->setTranslatable(TRUE)
+     ->setDisplayOptions('form', array(
+       'type' => 'string_textarea',
+       'format'=>'plain_text',
+       'settings' => array(
+         'display_label' => TRUE,
+       ),
+     ))
+    ->setDisplayOptions('view', array(
+       'label' => 'hidden',
+       'type' => 'string',
+     ))
+     ->setDisplayConfigurable('form', TRUE)
+     ->setDisplayConfigurable('view', TRUE)
+     ->setRequired(TRUE);
+
+   $fields['lieu'] = BaseFieldDefinition::create('string')
+     ->setLabel(t('Place'))
+     ->setDescription(t('Place where the event will be presented'))
+     ->setRevisionable(TRUE)
+     ->setTranslatable(TRUE)
+     ->setDisplayOptions('form', array(
+       'type' => 'string_textfield',
+       'settings' => array(
+         'display_label' => TRUE,
+       ),
+     ))
+    ->setDisplayOptions('view', array(
+       'label' => 'hidden',
+       'type' => 'string',
+     ))
+     ->setDisplayConfigurable('form', TRUE)
+     ->setDisplayConfigurable('view', TRUE)
+     ->setRequired(TRUE);
+
+
+     $fields['manager'] = BaseFieldDefinition::create('entity_reference')
+       ->setLabel(t('Event Manager'))
+       ->setDescription(t('The user who organises the event.'))
+       ->setRevisionable(TRUE)
+       ->setSetting('target_type', 'user')
+       ->setSetting('handler', 'default')
+       ->setTranslatable(TRUE)
+       ->setDisplayOptions('view', [
+         'label' => 'hidden',
+         'type' => 'author',
+         'weight' => 0,
+       ])
+       ->setDisplayOptions('form', [
+         'type' => 'entity_reference_autocomplete',
+         'weight' => 5,
+         'settings' => [
+           'match_operator' => 'CONTAINS',
+           'size' => '60',
+           'autocomplete_type' => 'tags',
+           'placeholder' => '',
+         ],
+       ])
+       ->setDisplayConfigurable('form', TRUE)
+       ->setDisplayConfigurable('view', TRUE);
+
+     $fields['image'] = BaseFieldDefinition::create('image')
+      ->setLabel(t('Image'))
+      ->setDescription(t('Image field'))
+      ->setSettings([
+        'file_directory' => 'IMAGE_FOLDER',
+        'alt_field_required' => FALSE,
+        'file_extensions' => 'png jpg jpeg',
+      ])
+      ->setCardinality(5)
+      ->setDisplayOptions('view', array(
+        'label' => 'hidden',
+        'type' => 'default',
+        'weight' => 0,
+      ))
+      ->setDisplayOptions('form', array(
+        'label' => 'hidden',
+        'type' => 'image_image',
+        'weight' => 0,
+      ))
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['start_date'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('Start date'))
+      ->setDescription(t('date when the event starts'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'datetime_type' => 'date'
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'datetime_default',
+        'settings' => [
+          'format_type' => 'medium',
+        ],
+        'weight' => 14,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'datetime_default',
+        'weight' => 14,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
+
+    $fields['end_date'] = BaseFieldDefinition::create('datetime')
+      ->setLabel(t('End date'))
+      ->setDescription(t('date when the event will finish'))
+      ->setRevisionable(TRUE)
+      ->setSettings([
+        'datetime_type' => 'date'
+      ])
+      ->setDefaultValue('')
+      ->setDisplayOptions('view', [
+        'label' => 'above',
+        'type' => 'datetime_default',
+        'settings' => [
+          'format_type' => 'medium',
+        ],
+        'weight' => 14,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'datetime_default',
+        'weight' => 14,
+      ])
+      ->setDisplayConfigurable('form', TRUE)
+      ->setDisplayConfigurable('view', TRUE);
 
     return $fields;
   }

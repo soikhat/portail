@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "549e48b1afd36947b70e2218a4723cd8",
+    "content-hash": "daa35139cc042b3fbe508b96e09c81b5",
     "packages": [
         {
             "name": "alchemy/zippy",
@@ -166,6 +166,65 @@
             ],
             "description": "Drupal code generator",
             "time": "2018-10-11T08:05:59+00:00"
+        },
+        {
+            "name": "commerceguys/addressing",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/commerceguys/addressing.git",
+                "reference": "f23ce2596ccfb47bcdaa9d14fbf9b4f699dc3d4b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/commerceguys/addressing/zipball/f23ce2596ccfb47bcdaa9d14fbf9b4f699dc3d4b",
+                "reference": "f23ce2596ccfb47bcdaa9d14fbf9b4f699dc3d4b",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/collections": "~1.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "1.*",
+                "phpunit/phpunit": "~4.0",
+                "squizlabs/php_codesniffer": "2.*",
+                "symfony/validator": ">=3.2"
+            },
+            "suggest": {
+                "symfony/validator": "to validate addresses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "CommerceGuys\\Addressing\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bojan Zivanovic"
+                },
+                {
+                    "name": "Damien Tournoud"
+                }
+            ],
+            "description": "Addressing library powered by CLDR and Google's address data.",
+            "keywords": [
+                "address",
+                "internationalization",
+                "localization",
+                "postal"
+            ],
+            "time": "2018-10-21T23:38:05+00:00"
         },
         {
             "name": "composer/installers",
@@ -1826,6 +1885,123 @@
             "time": "2018-07-27T10:07:07+00:00"
         },
         {
+            "name": "drupal/address",
+            "version": "1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/address",
+                "reference": "8.x-1.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/address-8.x-1.4.zip",
+                "reference": "8.x-1.4",
+                "shasum": "143e426be73418c719c6bddd5fb81c610604e860"
+            },
+            "require": {
+                "commerceguys/addressing": "^1.0.0",
+                "drupal/core": "*"
+            },
+            "require-dev": {
+                "drupal/token": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.4",
+                    "datestamp": "1527081784",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "bojanz",
+                    "homepage": "https://www.drupal.org/user/86106"
+                },
+                {
+                    "name": "dww",
+                    "homepage": "https://www.drupal.org/user/46549"
+                },
+                {
+                    "name": "googletorp",
+                    "homepage": "https://www.drupal.org/user/386230"
+                },
+                {
+                    "name": "rszrama",
+                    "homepage": "https://www.drupal.org/user/49344"
+                }
+            ],
+            "description": "Provides functionality for storing, validating and displaying international postal addresses.",
+            "homepage": "http://drupal.org/project/address",
+            "support": {
+                "source": "http://cgit.drupalcode.org/address"
+            }
+        },
+        {
+            "name": "drupal/address_map_link",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/address_map_link",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/address_map_link-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "ec1e4273844795ddd6741ba1eb181476727373f2"
+            },
+            "require": {
+                "drupal/address": "^1.0",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1504143244",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Snyder",
+                    "homepage": "https://www.drupal.org/user/1988434",
+                    "email": "chris@chrissnyder.org",
+                    "role": "Lead Developer"
+                }
+            ],
+            "description": "Provides a link to an external mapping site for an address field.",
+            "homepage": "https://www.drupal.org/project/address_map_link",
+            "keywords": [
+                "Drupal"
+            ],
+            "support": {
+                "source": "http://cgit.drupalcode.org/address_map_link",
+                "issues": "https://www.drupal.org/project/issues/address_map_link"
+            }
+        },
+        {
             "name": "drupal/admin_toolbar",
             "version": "1.25.0",
             "source": {
@@ -2517,7 +2693,8 @@
                     "recurse": false,
                     "replace": false,
                     "merge-extra": false
-                }
+                },
+                "patches_applied": []
             },
             "autoload": {
                 "psr-4": {
@@ -2621,6 +2798,65 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/devel",
                 "issues": "http://drupal.org/project/devel",
+                "irc": "irc://irc.freenode.org/drupal-contribute"
+            }
+        },
+        {
+            "name": "drupal/dynamic_entity_reference",
+            "version": "1.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/dynamic_entity_reference",
+                "reference": "8.x-1.6"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/dynamic_entity_reference-8.x-1.6.zip",
+                "reference": "8.x-1.6",
+                "shasum": "9f1d1343f7fac8003bb70b887ec77f11c80afa1a"
+            },
+            "require": {
+                "drupal/core": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.6",
+                    "datestamp": "1536250980",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Lee Rowlands",
+                    "homepage": "https://www.drupal.org/u/larowlan",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Jibran Ijaz",
+                    "homepage": "https://www.drupal.org/u/jibran",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "larowlan",
+                    "homepage": "https://www.drupal.org/user/395439"
+                }
+            ],
+            "description": "Provides a field that allows an entity-reference field to reference more than one entity type.",
+            "homepage": "http://drupal.org/project/dynamic_entity_reference",
+            "support": {
+                "source": "http://cgit.drupalcode.org/dynamic_entity_reference",
+                "issues": "http://drupal.org/project/dynamic_entity_reference",
                 "irc": "irc://irc.freenode.org/drupal-contribute"
             }
         },
@@ -2837,6 +3073,114 @@
             }
         },
         {
+            "name": "drupal/sms",
+            "version": "1.1.0",
+            "require": {
+                "drupal/core": "^8.0",
+                "drupal/dynamic_entity_reference": "^1.0",
+                "drupal/smsframework": "self.version",
+                "drupal/telephone": "*"
+            },
+            "type": "metapackage",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1519797784",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Aniebiet Udoh",
+                    "homepage": "https://www.drupal.org/u/almaudoh",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Daniel Phin",
+                    "homepage": "http://danielph.in",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "dpi",
+                    "homepage": "https://www.drupal.org/user/81431"
+                }
+            ],
+            "description": "Provides an extensible API that facilitates communication between Drupal and various SMS gateways.",
+            "homepage": "http://drupal.org/project/smsframework",
+            "support": {
+                "source": "http://cgit.drupalcode.org/smsframework",
+                "issues": "https://www.drupal.org/project/issues/smsframework"
+            }
+        },
+        {
+            "name": "drupal/smsframework",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/smsframework",
+                "reference": "8.x-1.1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/smsframework-8.x-1.1.zip",
+                "reference": "8.x-1.1",
+                "shasum": "fdec4f6a3016fbf0da9364708a95cc63a00bece2"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "require-dev": {
+                "drupal/dynamic_entity_reference": "*",
+                "drupal/sms": "*"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.1",
+                    "datestamp": "1519797784",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "almaudoh",
+                    "homepage": "https://www.drupal.org/user/488082"
+                },
+                {
+                    "name": "batje",
+                    "homepage": "https://www.drupal.org/user/2696"
+                },
+                {
+                    "name": "dpi",
+                    "homepage": "https://www.drupal.org/user/81431"
+                }
+            ],
+            "homepage": "https://www.drupal.org/project/smsframework",
+            "support": {
+                "source": "http://cgit.drupalcode.org/smsframework"
+            }
+        },
+        {
             "name": "drupal/token",
             "version": "1.5.0",
             "source": {
@@ -2902,6 +3246,52 @@
             "support": {
                 "source": "http://cgit.drupalcode.org/token"
             }
+        },
+        {
+            "name": "drupal/twig_debug",
+            "version": "dev-1.x",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/twig_debug",
+                "reference": "629c87c6baf4b10688977aa66f563d7e7e564eca"
+            },
+            "require": {
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.x-dev",
+                    "datestamp": "1401995927",
+                    "security-coverage": {
+                        "status": "not-covered",
+                        "message": "Project has not opted into security advisory coverage!"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "mikl",
+                    "homepage": "https://www.drupal.org/user/58679"
+                },
+                {
+                    "name": "rupl",
+                    "homepage": "https://www.drupal.org/user/411999"
+                }
+            ],
+            "description": "Provides help for debugging Twig templates.",
+            "homepage": "https://www.drupal.org/project/twig_debug",
+            "support": {
+                "source": "http://cgit.drupalcode.org/twig_debug"
+            },
+            "time": "2014-06-05T19:17:36+00:00"
         },
         {
             "name": "drupal/webform",
@@ -6329,6 +6719,65 @@
     ],
     "packages-dev": [
         {
+            "name": "ajgl/breakpoint-twig-extension",
+            "version": "0.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ajgarlag/AjglBreakpointTwigExtension.git",
+                "reference": "0dfa4f0ae3bbeb6c8036e3e6d6c204c43b090155"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ajgarlag/AjglBreakpointTwigExtension/zipball/0dfa4f0ae3bbeb6c8036e3e6d6c204c43b090155",
+                "reference": "0dfa4f0ae3bbeb6c8036e3e6d6c204c43b090155",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "twig/twig": "^1.14"
+            },
+            "require-dev": {
+                "symfony/framework-bundle": "^2.3",
+                "symfony/twig-bundle": "^2.3"
+            },
+            "suggest": {
+                "ext-xdebug": "The Xdebug extension is required for the breakpoint to work",
+                "symfony/framework-bundle": "The framework bundle to integrate the extension into Symfony",
+                "symfony/twig-bundle": "The twig bundle to integrate the extension into Symfony"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.4.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Ajgl\\Twig\\Extension\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Antonio J. García Lagar",
+                    "email": "aj@garcialagar.es",
+                    "homepage": "http://aj.garcialagar.es",
+                    "role": "developer"
+                }
+            ],
+            "description": "Twig extension to set breakpoints",
+            "homepage": "https://github.com/ajgarlag/AjglBreakpointTwigExtension",
+            "keywords": [
+                "Xdebug",
+                "breakpoint",
+                "twig"
+            ],
+            "time": "2016-03-31T18:09:32+00:00"
+        },
+        {
             "name": "behat/mink",
             "version": "dev-master",
             "source": {
@@ -6649,6 +7098,54 @@
                 "standards"
             ],
             "time": "2018-09-21T14:22:49+00:00"
+        },
+        {
+            "name": "drupal/twig_xdebug",
+            "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://git.drupal.org/project/twig_xdebug",
+                "reference": "8.x-1.0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://ftp.drupal.org/files/projects/twig_xdebug-8.x-1.0.zip",
+                "reference": "8.x-1.0",
+                "shasum": "f8a5cfef63b427d6b6b428a2c4bd19b19d082037"
+            },
+            "require": {
+                "ajgl/breakpoint-twig-extension": "0.3",
+                "drupal/core": "~8.0"
+            },
+            "type": "drupal-module",
+            "extra": {
+                "branch-alias": {
+                    "dev-1.x": "1.x-dev"
+                },
+                "drupal": {
+                    "version": "8.x-1.0",
+                    "datestamp": "1464928439",
+                    "security-coverage": {
+                        "status": "covered",
+                        "message": "Covered by Drupal's security advisory policy"
+                    }
+                }
+            },
+            "notification-url": "https://packages.drupal.org/8/downloads",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "charginghawk",
+                    "homepage": "https://www.drupal.org/user/2626341"
+                }
+            ],
+            "description": "Enables Xdebug breakpoints in Twig.",
+            "homepage": "https://www.drupal.org/project/twig_xdebug",
+            "support": {
+                "source": "http://cgit.drupalcode.org/twig_xdebug"
+            }
         },
         {
             "name": "fabpot/goutte",
@@ -7680,6 +8177,7 @@
                 "mock",
                 "xunit"
             ],
+            "abandoned": true,
             "time": "2018-08-09T05:50:03+00:00"
         },
         {
@@ -8496,7 +8994,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "drupal/computed_field": 10
+        "drupal/computed_field": 10,
+        "drupal/twig_debug": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

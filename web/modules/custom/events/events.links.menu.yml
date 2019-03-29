@@ -13,7 +13,7 @@ event_entity.admin.structure.settings:
   route_name: event_entity.settings
   parent: system.admin_structure
 
-#events.admin.add:
-  #title: 'Create an event'
-#  route_name: entity.event.add_form
-  #parent: system.admin
+events.admin.add:
+  title: 'Create event'
+  route_name: entity.event_entity.add_form
+  parent: system.admin

@@ -1,0 +1,7 @@
+participation_form.form:
+  path: '/form-events'
+  defaults:
+    _title: 'Event participation'
+    _form: '\Drupal\events\Form\EventEntityInscription'
+  requirements:
+    _access: 'TRUE'
