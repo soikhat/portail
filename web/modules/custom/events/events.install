@@ -1,0 +1,85 @@
+<?php
+
+use Drupal\Core\Database\Database;
+
+
+/*
+*Implements hook_schema
+*/
+function events_schema(){
+
+    //Create our table
+    $schema['participants_list'] = [
+
+        'description' => 'Store participants for each event',
+        'fields' => [
+            'id' => [
+                'description' => 'Primary key : list Id',
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE
+            ],
+            'uid' => [
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+                'length' => 10
+            ],
+            'eid'=>[
+                'description'=> 'id for the selected evenement',
+                'type' => 'int',
+                'unsigned' => TRUE,
+                'not null' => TRUE,
+            ],
+            'name' => [
+                'type' => 'varchar',
+                'description' => 'Participant name',
+                'length' => 60,
+                'not null' => TRUE
+            ],
+            'mail' => [
+                'type' =>'varchar',
+                'description' => 'Participant mail',
+                'length' => 255,
+                'not null' => TRUE
+            ],
+            'mobile' => [
+                'type' =>'varchar',
+                'description' => 'Participant mobile phone',
+                'length' => 12,
+                'not null' => TRUE
+            ],
+        ],
+        'primary key' => ['id']
+    ] ;
+    return $schema;
+}
+/**
+ * Implements hook_install().
+ */
+function events_install() {
+  $config = \Drupal::configFactory()->getEditable('system.mail');
+  $mail_plugins = $config->get('interface');
+  if (in_array('events', array_keys($mail_plugins))) {
+    return;
+  }
+
+  $mail_plugins['events'] = 'events_mail';
+  $config->set('interface', $mail_plugins)->save();
+}
+//Implement hook uninstall to delete our table on uninstalling events module
+function events_uninstall(){
+  //Deleting email_plugin on events unninstalling
+    $config = \Drupal::configFactory()->getEditable('system.mail');
+    $mail_plugins = $config->get('interface');
+    if (!in_array('my_module', array_keys($mail_plugins))) {
+      return;
+    }
+
+    unset($mail_plugins['my_module']);
+    $config->set('interface', $mail_plugins)->save();
+    //deleting table from the database
+    \Drupal::state()->delete('events');
+
+
+}

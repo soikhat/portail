@@ -6,6 +6,12 @@
  */
 
 use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Entity\EntityTypeInterface;
+Use \Drupal\Core\Entity\ContentEntityInterface;
+use Drupal\Core\Field\BaseFieldDefinition;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
 
 /**
  * Implements hook_help().
@@ -22,14 +28,82 @@ function events_help($route_name, RouteMatchInterface $route_match) {
     default:
   }
 }
+/**
+*Implements hook_preprocess()
+**/
+function events_preprocess_events_theme(&$variables,$entity){
+  //before insert the regstration form to the entity we need to check taht the user does not yet registred to htis event.
+  $page = \Drupal::routeMatch()->getRouteName();
+  $eid = \Drupal::routeMatch()->getParameter('event_entity')->id();
+  $participants_list = \Drupal::database()
+                      ->select('participants_list','P')
+                      ->condition('eid',$eid,'=')
+                      ->fields('P',['name'])->execute();
+  $list =[];
+  foreach($participants_list as $participant){
+    $list[] = $participant->name;
+  }
+  $participant_name = \Drupal::currentUser()->getAccountName();
+
+  if('entity.event_entity.canonical' == $page && !in_array($participant_name,$list)){
+
+    $form = \Drupal::formBuilder()
+                -> getForm('Drupal\events\Form\EventEntityInscription');
+                $variables['my_form'] = $form;
+                //ksm($variables);
+  }
+  else{
+    $variables['my_form'] = t('You are already registred to this event. Thank you.');
+  }
+  return $variables;
+
+}
 
 /**
  * Implements hook_theme().
  */
-function events_theme() {
+
+function events_theme($existing,$type, $theme, $path) {
   return [
-    'events' => [
-      'render element' => 'children',
+    'events_theme' => [
+      'variables' => ['my_var'=>NULL],
+      'template' =>'events_template'
     ],
   ];
+}
+/*
+* implements hook_theme_suggestion to suggest template name for our event entity
+*/
+function events_theme_suggestions_page_alter(array &$suggestions,array $variables,$hook){
+
+  $eventsPage = \Drupal::routeMatch()->getParameter('event_entity');
+
+  if(is_object($eventsPage)){
+
+    $suggestions[] = 'events_theme';
+
+  }
+
+}
+
+/***
+**Implements hook_mail
+**/
+function events_mail($key,&$message,$params){
+
+  switch ($key) {
+    case 'events_registration':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+      $message['subject'] = $params['subject'];
+      $message['body'][] = $params['message'];
+      $message['options'] = [];
+      if (isset($params['options']) && !empty($params['options'])) {
+        foreach ($params['options'] as $key => $value) {
+          $message['options'][$key] = $value;
+        }
+      }
+      break;
+  }
+
 }
