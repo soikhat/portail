@@ -405,6 +405,8 @@ class EventEntity extends RevisionableContentEntityBase implements EventEntityIn
       ->setDisplayConfigurable('form', TRUE)
       ->setDisplayConfigurable('view', TRUE);
 
+    
+
     return $fields;
   }
 
