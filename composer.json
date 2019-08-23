@@ -25,7 +25,7 @@
         "drupal/config_perms": "^1.1",
         "drupal/console": "^1.0.2",
         "drupal/core": "^8.6.0",
-        "drupal/devel": "^1.2",
+        "drupal/devel": "2.x-dev",
         "drupal/ds": "^3.3",
         "drupal/linked_field": "^1.1",
         "drupal/nexus": "^1.4",
@@ -91,6 +91,11 @@
                 ".editorconfig": "../.editorconfig",
                 ".gitattributes": "../.gitattributes"
             }
+        },
+        "patches" :{
+          "drupal/twig": {
+            "fix error twig attribut name does not exist on node": "https://www.drupal.org/files/issues/2019-03-12/3039408-40.patch"
+          }
         }
     }
 }
